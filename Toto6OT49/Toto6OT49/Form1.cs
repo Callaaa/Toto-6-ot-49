@@ -19,33 +19,44 @@ namespace Toto6OT49
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Random rand = new Random();
-            int[] numbers = new int[6];
-            int count = 0;
-            while (count < 6)
+            try
             {
-                int num = rand.Next(1, 50);
-                bool doesExist = false;
-                for (int i = 0; i < count; i++)
+                Random randomNums = new Random();
+                int[] nums = new int[6];
+                int count = 0;
+
+                while (count < 6)
                 {
-                    if (numbers[i] == num)
+                    int num = randomNums.Next(1, 50);
+                    if (!nums.Contains(num))
                     {
-                        doesExist = true;
-                        break;
-                    }                   
+                        nums[count] = num;
+                        count++;
+                    }
+               
+                    txtB1.Text = nums[0].ToString();
+                    txtB2.Text = nums[1].ToString();
+                    txtB3.Text = nums[2].ToString();
+                    txtB4.Text = nums[3].ToString();
+                    txtB5.Text = nums[4].ToString();
+                    txtB6.Text = nums[5].ToString();
                 }
-                if(!doesExist)
-                {
-                    numbers[count] = num;
-                    count++;
-                }               
-                txtB1.Text = numbers[0].ToString();
-                txtB2.Text = numbers[1].ToString();
-                txtB3.Text = numbers[2].ToString();
-                txtB4.Text = numbers[3].ToString();
-                txtB5.Text = numbers[4].ToString();
-                txtB6.Text = numbers[5].ToString();               
+                pictureBox1.Image=Image.FromFile("kit.gif");
+                pictureBox2.Image = Image.FromFile("money.gif");
             }
+            catch (ArgumentException)
+            {
+                MessageBox.Show("Error","Problem!!!",MessageBoxButtons.OK,MessageBoxIcon.Error);
+
+            }
+                                         
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
+    
 }
+
